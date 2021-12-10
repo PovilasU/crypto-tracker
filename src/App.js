@@ -8,7 +8,7 @@ class App extends React.Component {
     data: {},
   };
   async componentDidMount() {
-    //const fetchedData = await fetchData();
+    const fetchedData = await fetchData();
 
     const fetchedData2 = [
       {
@@ -28,7 +28,7 @@ class App extends React.Component {
       rate: 3260.3514321215056208129867667,
     };
 
-    // console.log(fetchedData1);
+    //  console.log(fetchedData);
     //console.log(data);
 
     this.setState({ data: fetchedData1 });

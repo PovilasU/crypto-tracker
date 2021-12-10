@@ -14,22 +14,24 @@ require('dotenv').config({
 // };
 
 export const fetchData = async () => {
-  const response = await axios({
-    method: 'GET',
-    // url: 'https://rest.coinapi.io/v1/assets',
-    url: 'https://rest.coinapi.io/v1/exchangerate/BTC/EUR/history?period_id=1MIN&time_start=2016-01-01T00:00:00&time_end=2016-02-01T00:00:00',
-    headers: {
-      'X-CoinAPI-Key': process.env.REACT_APP_API_KEY,
-    },
-    // params: {
-    //   filter_asset_id: 'ADA,DOGE',
-    // },z
-  });
+  try {
+    const { data } = await axios({
+      method: 'GET',
+      // url: 'https://rest.coinapi.io/v1/assets',
+      url: 'https://rest.coinapi.io/v1/exchangerate/BTC/EUR/history?period_id=1MIN&time_start=2016-01-01T00:00:00&time_end=2016-02-01T00:00:00',
+      headers: {
+        'X-CoinAPI-Key': process.env.REACT_APP_API_KEY,
+      },
+      // params: {
+      //   filter_asset_id: 'ADA,DOGE',
+      // },z
+    });
 
-  const coins = response.data.map((coinApiData) => ({
-    time_open: coinApiData.time_open,
-    rate_open: coinApiData.rate_open,
-  }));
+    const coins = data.map((coinApiData) => ({
+      time_open: coinApiData.time_open,
+      rate_open: coinApiData.rate_open,
+    }));
 
-  return coins;
+    return coins;
+  } catch (error) {}
 };

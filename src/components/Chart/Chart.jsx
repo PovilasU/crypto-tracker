@@ -1,11 +1,61 @@
-import React from 'react'
+import React, {useState, useEffect , Component} from 'react'
+import { fetchDailyData } from '../../api'
+import { Line, Bar   } from 'react-chartjs-2'
+import styles from './Chart.module.css'
 
 const Chart = () => {
-    return (
-        <div>
-            <h1>Chart</h1>
-        </div>
-    )
-}
+  const [dailyData, setDailyData] = useState([]);
+  
+  useEffect(()=> {
+    const fetchAPI = async () => {
+      setDailyData(await fetchDailyData());
+    }    
+    fetchAPI();
 
-export default Chart;
+  }, []);
+  
+  const lineChart = (
+    dailyData.length ?
+      (
+        <Line
+          data={{
+  labels: dailyData.map(({ date }) => date),
+  datasets: [
+    {
+      data: dailyData.map(({ priceUsd }) => priceUsd),
+      label: 'Price in USD',
+      borderColor: `#3333ff`,
+      fill: true,
+    },
+  ],
+}
+          
+        }
+        />
+      ): null
+  )
+
+  return (
+    <div className={styles.container}>
+      {/* <Line
+        data={data2}
+        options={{
+          plugins: {
+            title: {
+              display: true,
+              text: 'Cryptocurrency prices',
+            },
+            legend: {
+              display: true,
+              position: 'bottom',
+            },
+          },
+        }}
+      /> */}
+
+      {lineChart}
+    </div>
+  );
+ };
+
+ export default Chart

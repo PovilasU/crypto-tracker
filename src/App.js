@@ -2,13 +2,30 @@ import React from 'react';
 import { Cards, Chart, CurrencyPicker } from './components';
 import styles from './App.module.css';
 import { fetchData } from './api';
+import LineDemo from './LineDemo';
+//import { Chart } from './components/Chart.js';
+import LineDemo2 from './LineDemo2';
+import { Line } from 'react-chartjs-2';
+import { bitcoindata } from './api/bitcoindata.js';
+
+const data2 = {
+  labels: bitcoindata.data.map(({ date }) => date),
+  datasets: [
+    {
+      data: bitcoindata.data.map(({ priceUsd }) => priceUsd),
+      label: 'Price in USD',
+      borderColor: `#3333ff`,
+      fill: true,
+    },
+  ],
+};
 
 class App extends React.Component {
   state = {
     data: {},
   };
   async componentDidMount() {
-    const fetchedData = await fetchData();
+    //   const fetchedData = await fetchData();
 
     const fetchedData2 = [
       {
@@ -28,7 +45,7 @@ class App extends React.Component {
       rate: 3260.3514321215056208129867667,
     };
 
-    //  console.log(fetchedData);
+    // console.log(fetchedData);
     //console.log(data);
 
     this.setState({ data: fetchedData1 });
@@ -39,7 +56,7 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <Cards data={data} />
-        <CurrencyPicker />
+        {/* <CurrencyPicker /> */}
         <Chart />
       </div>
     );

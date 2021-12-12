@@ -26,7 +26,7 @@ const Cards = ({data:{asset_id_base, asset_id_quote,rate, time}}) => {
                             />
                         </Typography>
                         <Typography color="textSecondary">{new Date(time).toDateString()} </Typography>
-                    <Typography variant="body2">Thsi is testt text </Typography>
+                    {/* <Typography variant="body2">Thsi is testt text </Typography> */}
                     </CardContent>
                 </Grid>
                 <Grid item component={Card} xs={12} md={3} className={cx (styles.card, styles.green)}>

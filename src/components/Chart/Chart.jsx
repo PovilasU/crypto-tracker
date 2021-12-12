@@ -19,17 +19,16 @@ const Chart = () => {
       (
         <Line
           data={{
-  labels: dailyData.map(({ date }) => date),
-  datasets: [
-    {
-      data: dailyData.map(({ priceUsd }) => priceUsd),
-      label: 'Price in USD',
-      borderColor: `#3333ff`,
-      fill: true,
-    },
-  ],
-}
-          
+          labels: dailyData.map(({ date }) => date),
+          datasets: [
+          {
+            data: dailyData.map(({ priceUsd }) => priceUsd),
+            label: 'Price in USD',
+            borderColor: `#3333ff`,
+            fill: true,
+          },
+        ],
+      }          
         }
         />
       ): null
@@ -37,22 +36,6 @@ const Chart = () => {
 
   return (
     <div className={styles.container}>
-      {/* <Line
-        data={data2}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: 'Cryptocurrency prices',
-            },
-            legend: {
-              display: true,
-              position: 'bottom',
-            },
-          },
-        }}
-      /> */}
-
       {lineChart}
     </div>
   );

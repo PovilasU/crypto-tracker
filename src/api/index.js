@@ -5,6 +5,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const url = 'https://api.coincap.io/v2';
+
 export const fetchData = async () => {
   try {
     const symbol = 'BTC';
@@ -77,13 +79,27 @@ export const fetchDailyDataOld = async () => {
 export const fetchDailyData = async () => {
   try {
     const res = await fetch(
-      'https://api.coincap.io/v2/assets/bitcoin/history?interval=d1'
+      // 'https://api.coincap.io/v2/assets/bitcoin/history?interval=d1'
+      `${url}/assets/bitcoin/history?interval=d1`
     );
     const { data } = await res.json();
 
-    console.log('data');
-    console.log(data);
+    // console.log('data');
+    // console.log(data);
     // return modifiedData;
     return data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchCurrencies = async () => {
+  try {
+    const res = await fetch(`${url}/assets`);
+    const { data } = await res.json();
+
+    return data.map((currency) => currency.id);
+  } catch (error) {
+    console.log(error);
+  }
 };

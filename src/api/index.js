@@ -7,45 +7,26 @@ require('dotenv').config({
 
 const url = 'https://api.coincap.io/v2';
 
-export const fetchData = async () => {
+export const fetchData = async (currency) => {
+  let changableUrl = url;
+  if (currency) {
+    changableUrl = `${url}/assets/${currency}`;
+  }
   try {
-    const symbol = 'BTC';
+    console.log('changableUrl 1');
+    // console.log(data);
+    //const res = await fetch(`${url}/assets/bitcoin`);
+    const res = await fetch(changableUrl);
+    const coinData = await res.json();
 
-    const fetchedData2 = [
-      {
-        time_open: '2016-01-01T00:00:00.0000000Z',
-        rate_open: 395.84356746236574,
-      },
-      {
-        time_open: '2016-01-01T00:01:00.0000000Z',
-        rate_open: 396.6670099999999,
-      },
-    ];
-    //const { data } = await axios({
-    const { data } = axios({
-      method: 'GET',
-      // url: 'https://rest.coinapi.io/v1/assets',
-      //url: 'https://rest.coinapi.io/v1/symbols',
-      //url: 'https://rest.coinapi.io/v1/exchanges',
-      //  url: `https://rest.coinapi.io/v1/exchangerate/${symbol}/EUR/history?period_id=1MIN&time_start=2016-01-01T00:00:00&time_end=2016-02-01T00:00:00`,
-      headers: {
-        'X-CoinAPI-Key': process.env.REACT_APP_API_KEY,
-      },
-      // params: {
-      //   filter_asset_id: 'ADA,DOGE',
-      // },
-    });
+    console.log('coinData');
+    console.log(coinData);
+    //   return data.map((data) => {});
 
-    // const coins = data.map((coinApiData) => ({
-    //   symbol: symbol,
-    //   time_open: coinApiData.time_open,
-    //   rate_open: coinApiData.rate_open,
-    // }));
-
-    // return coins;
-    // return data;
-    return fetchedData2;
-  } catch (error) {}
+    return coinData;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const fetchDailyDataOld = async () => {

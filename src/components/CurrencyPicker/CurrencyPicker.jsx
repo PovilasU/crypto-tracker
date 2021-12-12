@@ -3,7 +3,7 @@ import { NativeSelect, FormControl } from '@mui/material';
 import styles from './CurrencyPicker.module.css';
 import { fetchCurrencies } from '../../api';
 
-const CurrencyPicker = () => {
+const CurrencyPicker = ({ handleCurrencyChange }) => {
   const [fetchedCurrencies, setFetchedCurrencies] = useState([]);
   useEffect(() => {
     const fetchAPI = async () => {
@@ -12,13 +12,16 @@ const CurrencyPicker = () => {
     fetchAPI();
   }, [setFetchedCurrencies]);
 
-  console.log('fetchedCurrencies');
-  console.log(fetchedCurrencies);
+  // console.log('fetchedCurrencies');
+  // console.log(fetchedCurrencies);
 
   return (
     <FormControl className={styles.formControl}>
       <h1>CurrencyPicker</h1>
-      <NativeSelect>
+      <NativeSelect
+        defaultValue=""
+        onChange={(e) => handleCurrencyChange(e.target.value)}
+      >
         <option value="global">Global</option>
         {fetchedCurrencies.map((currency, i) => (
           <option key={i} value={currency}>

@@ -9,23 +9,7 @@ import LineDemo2 from './LineDemo2';
 import { Line } from 'react-chartjs-2';
 import { bitcoindata } from './api/bitcoindata.js';
 import { bitcoindata2 } from './api/bitcoinDummyData';
-// const fetchedDataDummy = {
-//   data: {
-//     id: 'bitcoin',
-//     rank: '1',
-//     symbol: 'BTC',
-//     name: 'Bitcoin',
-//     supply: '18899056.0000000000000000',
-//     maxSupply: '21000000.0000000000000000',
-//     marketCapUsd: '957147621021.5708437175117360',
-//     volumeUsd24Hr: '12580846552.7650603187647585',
-//     priceUsd: '50645.2608543818719685',
-//     changePercent24Hr: '3.6802692944503915',
-//     vwap24Hr: '49408.6501943061983328',
-//     explorer: 'https://blockchain.info/',
-//   },
-//   timestamp: 1639334596796,
-// };
+import logo from './images/logo.jpg';
 
 // console.log('fetchedDataDummy');
 // console.log(fetchedDataDummy);
@@ -84,16 +68,24 @@ class App extends React.Component {
 
   render() {
     const { data, historicalData, errorMsg, currencyId } = this.state;
-    console.log('XXXXXXXX');
-    console.log(historicalData);
-    console.log('XXXXXXXX ends');
+
     return (
       <div className={styles.container}>
         {errorMsg ? <p>{errorMsg}</p> : null}
+        <img
+          className={styles.image}
+          alt="crypto currency logo"
+          src={logo}
+          // widht="200"
+          // height="200"
+        />
         <Cards currency={data} />
+        {/* <h1>CurrencyPicker</h1> */}
         <CurrencyPicker handleCurrencyChange={this.handleCurrencyChange} />
         <p>Country:{currencyId} </p>
-        <Chart historicaldata={historicalData} currencyid={currencyId} />
+        {historicalData ? (
+          <Chart historicaldata={historicalData} currencyid={currencyId} />
+        ) : null}
       </div>
     );
   }

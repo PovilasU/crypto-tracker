@@ -35,7 +35,9 @@ const Chart = ({ historicaldata, currencyid = 'bitcoint' }) => {
   const lineChart = dailyData ? (
     <Line
       data={{
-        labels: dailyData.map(({ date }) => date),
+        labels: dailyData.map(({ date }) =>
+          new Date(date).toLocaleDateString('en-GB')
+        ),
         datasets: [
           {
             data: dailyData.map(({ priceUsd }) => priceUsd),
@@ -51,7 +53,7 @@ const Chart = ({ historicaldata, currencyid = 'bitcoint' }) => {
   return (
     <div className={styles.container}>
       {/* {currencyid ? lineChart : <p>no currency is selected </p>} */}
-      {historicaldata[0] ? 'historicaldata' : 'lineChart'}
+      {/* {historicaldata[0] ? 'historicaldata' : 'lineChart'} */}
       {historicaldata[0] ? lineHistoricalChart : lineChart}
     </div>
   );

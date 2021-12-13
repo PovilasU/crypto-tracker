@@ -12,14 +12,12 @@ const CurrencyPicker = ({ handleCurrencyChange }) => {
     fetchAPI();
   }, [setFetchedCurrencies]);
 
-  // console.log('fetchedCurrencies');
-  // console.log(fetchedCurrencies);
   const currencySelector = fetchedCurrencies ? (
     <NativeSelect
       defaultValue=""
       onChange={(e) => handleCurrencyChange(e.target.value)}
     >
-      <option value="bitcoin">bitcoin</option>
+      <option value="bitcoin">bitcoin default</option>
       {fetchedCurrencies.map((currency, i) => (
         <option key={i} value={currency}>
           {currency}
@@ -33,10 +31,7 @@ const CurrencyPicker = ({ handleCurrencyChange }) => {
   );
 
   return (
-    <FormControl className={styles.formControl}>
-      <h1>CurrencyPicker</h1>
-      {currencySelector}
-    </FormControl>
+    <FormControl className={styles.formControl}>{currencySelector}</FormControl>
   );
 };
 

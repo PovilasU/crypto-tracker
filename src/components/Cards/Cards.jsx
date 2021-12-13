@@ -15,7 +15,7 @@ const Cards = ({ currency: { data, timestamp } }) => {
   return (
     <div className={styles.container}>
       <Typography gutterBottom variant="h4" component="h2">
-        {data.name} {data.symbol}
+        s{data.name} {data.symbol}
         {',  '}
         {new Date(timestamp).toDateString()}
       </Typography>

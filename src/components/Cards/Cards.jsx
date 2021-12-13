@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, Typography, Grid } from '@material-ui/core';
-// import Typography from '@mui/material/Typography';
+
 import styles from './Cards.module.css';
 import CountUp from 'react-countup';
 import cx from 'classnames';
@@ -15,7 +15,7 @@ const Cards = ({ currency: { data, timestamp } }) => {
   return (
     <div className={styles.container}>
       <Typography gutterBottom variant="h4" component="h2">
-        s{data.name} {data.symbol}
+        {data.name} {data.symbol}
         {',  '}
         {new Date(timestamp).toDateString()}
       </Typography>
@@ -51,10 +51,6 @@ const Cards = ({ currency: { data, timestamp } }) => {
       </Grid>
     </div>
   );
-  // ) : (
-  //   <p>Please wait one minute ... (api.coincap.io has limited requests)</p>
-  // );
-  // return <>{cards}</>;
 };
 
 export default Cards;

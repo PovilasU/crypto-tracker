@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NativeSelect, FormControl } from '@mui/material';
+import { NativeSelect, FormControl } from '@material-ui/core';
 import styles from './CurrencyPicker.module.css';
 import { fetchCurrencies } from '../../api';
 

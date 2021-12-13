@@ -53,6 +53,13 @@ class App extends React.Component {
 
     return (
       <div className={styles.container}>
+        <a
+          href="https://github.com/PovilasU/crypto-tracker"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Project Git Repo{' '}
+        </a>
         {errorMsg ? <p>{errorMsg}</p> : null}
         <img className={styles.image} alt="crypto currency logo" src={logo} />
         <Cards currency={data} />

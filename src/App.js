@@ -64,7 +64,7 @@ class App extends React.Component {
         <img className={styles.image} alt="crypto currency logo" src={logo} />
         <Cards currency={data} />
         <CurrencyPicker handleCurrencyChange={this.handleCurrencyChange} />
-        <p>Country:{currencyId} </p>
+        <p>Currency:{currencyId} </p>
         {historicalData ? (
           <Chart historicaldata={historicalData} currencyid={currencyId} />
         ) : null}
